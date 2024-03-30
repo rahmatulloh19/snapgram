@@ -1,8 +1,13 @@
 import { Client, Account, Databases, Storage, Avatars } from "appwrite";
 
 export const appwriteConfig = {
-  projectId: "6607ef424975c9ee8cc5",
   url: "https://cloud.appwrite.io/v1",
+  projectId: "6607ef424975c9ee8cc5",
+  databaseId: "6607f8ad17b0626a12ee",
+  storageId: "6607f84cf0faf82385e2",
+  userCollectionId: "6607f8fa11e883e9460c",
+  postCollectionId: "6607f8cc4c2ac5a5d84e",
+  savesCollectionId: "6607f922e5ebd4ddc729",
 };
 
 export const client = new Client();
