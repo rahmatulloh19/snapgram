@@ -1,13 +1,15 @@
+import Loader from "@/components/shared/Loader";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { SignUpValidation } from "@/lib";
+import { SignUpValidation } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { z } from "zod";
 
 const SignUpForm = () => {
-  const isLoading = true;
+  const isLoading = false;
 
   const form = useForm<z.infer<typeof SignUpValidation>>({
     resolver: zodResolver(SignUpValidation),
@@ -19,8 +21,8 @@ const SignUpForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof SignUpValidation>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof SignUpValidation>) {
+    // const newUser = await createUserAccount(values);
   }
 
   return (
@@ -29,7 +31,7 @@ const SignUpForm = () => {
         <div className="sm:w-420 flex-center flex-col">
           <img src="/assets/images/logo.svg" width={171} height={36} alt="Snapgram's logo" />
           <h2 className="h3-bold md:h2-bold mt-5 md:mt-12">Create new account</h2>
-          <p className="text-light-3 small-medium md:base-regular mt-2">To use Snapgram enter your details</p>
+          <p className="text-light-3 small-medium md:base-regular mt-2">To use Snapgram, Please enter your details</p>
 
           <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5 w-full mt-4">
             <FormField
@@ -84,9 +86,23 @@ const SignUpForm = () => {
                 </FormItem>
               )}
             />
-            <Button className="shad-button_primary" type="submit">
-              {isLoading ? <div className="flex-center gap-2">Loading ...</div> : "Sign-up"}
+            <Button className="shad-button_primary mb-2" type="submit">
+              {isLoading ? (
+                <div className="flex-center gap-2">
+                  {" "}
+                  <Loader /> Loading ...
+                </div>
+              ) : (
+                "Sign-up"
+              )}
             </Button>
+
+            <p className="text-small-regular text-light-2 text-center">
+              Already have an account ?{" "}
+              <Link className="text-primary-500 text-smile-semibold ml-1" to="/sign-in">
+                Log in
+              </Link>
+            </p>
           </form>
         </div>
       </Form>
