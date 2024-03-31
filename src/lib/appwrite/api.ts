@@ -39,8 +39,6 @@ export async function signInAccount(user: { email: string; password: string }) {
   try {
     const session = await account.createEmailSession(user.email, user.password);
 
-    console.log(session);
-
     return session;
   } catch (error) {
     console.log(error);
@@ -63,3 +61,13 @@ export async function getCurrentUser() {
     console.log(error);
   }
 }
+
+export const signOutAccount = async () => {
+  try {
+    const session = await account.deleteSession("current");
+
+    return session;
+  } catch (error) {
+    console.log(error);
+  }
+};
