@@ -14,7 +14,7 @@ export async function createUserAccount(user: INewUser) {
       accountId: newAccount.$id,
       name: newAccount.name,
       email: newAccount.email,
-      userName: user.username,
+      username: user.username,
       imageUrl: avatarUrl,
     });
 
@@ -25,7 +25,7 @@ export async function createUserAccount(user: INewUser) {
   }
 }
 
-export async function saveUserToDB(user: { accountId: string; email: string; name: string; imageUrl: URL; userName?: string }) {
+export async function saveUserToDB(user: { accountId: string; email: string; name: string; imageUrl: URL; username?: string }) {
   try {
     const newUser = await databases.createDocument(appwriteConfig.databaseId, appwriteConfig.userCollectionId, ID.unique(), user);
 
@@ -38,6 +38,8 @@ export async function saveUserToDB(user: { accountId: string; email: string; nam
 export async function signInAccount(user: { email: string; password: string }) {
   try {
     const session = await account.createEmailSession(user.email, user.password);
+
+    console.log(session);
 
     return session;
   } catch (error) {
