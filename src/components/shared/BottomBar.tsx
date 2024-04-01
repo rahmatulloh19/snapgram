@@ -1,5 +1,6 @@
 import { bottombarLinks } from "@/constants";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { INavLink } from "@/types";
+import { NavLink, useLocation } from "react-router-dom";
 
 const BottomBar = () => {
   const { pathname } = useLocation();
