@@ -5,13 +5,14 @@ import { useEffect } from "react";
 import { useUserContext } from "@/context/AuthContext";
 import { sideBarLinks } from "@/constants";
 import { INavLink } from "@/types";
+import Loader from "./Loader";
 
 const LeftSidebar = () => {
   const { pathname } = useLocation();
 
   const { mutate: signOut, isSuccess } = useSignOutAccount();
 
-  const { user } = useUserContext();
+  const { user, isLoading } = useUserContext();
 
   const navigate = useNavigate();
 
@@ -26,13 +27,19 @@ const LeftSidebar = () => {
         <Link to="/" className="flex gap-3 items-center">
           <img src="/assets/images/logo.svg" width={170} height={36} alt="logo" />
         </Link>
-        <Link className="flex gap-3 items-center" to={`/profile/${user.id}`}>
-          <img className="h-14 w-14 rounded-full" src={user.imageUrl || "/assets/icons/profile-placeholder.svg"} alt="Profile image" />
-          <div className="flex flex-col">
-            <p className="body-bold">{user.name}</p>
-            <p className="small-regular text-light-3">@{user.username}</p>
+        {isLoading || !user.email ? (
+          <div className="h-14">
+            <Loader />
           </div>
-        </Link>
+        ) : (
+          <Link className="flex gap-3 items-center" to={`/profile/${user.id}`}>
+            <img className="h-14 w-14 rounded-full" src={user.imageUrl || "/assets/icons/profile-placeholder.svg"} alt="Profile image" />
+            <div className="flex flex-col">
+              <p className="body-bold">{user.name}</p>
+              <p className="small-regular text-light-3">@{user.username}</p>
+            </div>
+          </Link>
+        )}
         <ul className="flex flex-col gap-6">
           {sideBarLinks.map((link: INavLink) => (
             <li className={`leftsidebar-link group ${pathname === link.route ? "bg-primary-500" : ""}`} key={link.label}>
