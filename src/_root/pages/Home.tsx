@@ -4,7 +4,8 @@ import { useGetRecentPosts } from "@/lib/react-queries/queriesAndMutations";
 import { Models } from "appwrite";
 
 const Home = () => {
-  const { data: posts, isPending: isPostLoading, isError: isErrorPost } = useGetRecentPosts();
+  // isError: isErrorPost
+  const { data: posts, isPending: isPostLoading } = useGetRecentPosts();
 
   // if (isErrorPosts || isErrorCreators) {
   //   return (
