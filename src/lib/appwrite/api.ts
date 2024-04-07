@@ -221,7 +221,7 @@ export async function updatePost(post: IUpdatePost) {
         throw Error;
       }
 
-      image = { ...image, imageUrl: fileUrl, imageId: uploadFile.$id };
+      image = { ...image, imageUrl: fileUrl, imageId: uploadedFile.$id };
     }
 
     const tags = post.tags?.replace(/ /g, "").split(",") || [];
