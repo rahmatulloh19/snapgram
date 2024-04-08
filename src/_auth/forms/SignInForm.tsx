@@ -18,7 +18,7 @@ const SignInForm = () => {
 
   const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
 
-  const { mutateAsync: signInAccount } = useSignInAccount();
+  const { mutateAsync: signInAccount, isSuccess } = useSignInAccount();
 
   const form = useForm<z.infer<typeof SignInValidation>>({
     resolver: zodResolver(SignInValidation),
@@ -93,10 +93,9 @@ const SignInForm = () => {
                 </FormItem>
               )}
             />
-            <Button className="shad-button_primary mb-2" type="submit">
-              {isUserLoading ? (
+            <Button className="shad-button_primary mb-2" type="submit" disabled={isUserLoading || isSuccess}>
+              {isUserLoading || isSuccess ? (
                 <div className="flex-center gap-2">
-                  {" "}
                   <Loader /> Loading ...
                 </div>
               ) : (

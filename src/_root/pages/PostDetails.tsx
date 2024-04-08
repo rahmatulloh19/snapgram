@@ -17,7 +17,7 @@ const PostDetails = () => {
 
   return (
     <div className="post_details-container">
-      {isPending ? (
+      {isPending || !post ? (
         <Loader />
       ) : (
         <div className="post_details-card">
@@ -28,7 +28,7 @@ const PostDetails = () => {
                 <img className="rounded-full w-8 h-8 lg:w-12 lg:h-12" src={post?.creator?.imageUrl || "/assets/icons/profile-placeholder.svg"} alt="Creator image" />
 
                 <div className="flex flex-col">
-                  <p className="base-medium lg:body-bold text-light-1">{post.creator.name}</p>
+                  <p className="base-medium lg:body-bold text-light-1">{post?.creator.name}</p>
                   <div className="flex-center gap-2 text-light-3">
                     <p className="subtle-semibold lg:small-regular">{multiFormatDateString(post?.$createdAt)}</p>-<p className="subtle-semibold lg:small-regular">{post?.location}</p>
                   </div>
