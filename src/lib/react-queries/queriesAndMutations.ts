@@ -179,7 +179,7 @@ export const useSearchPosts = (searchTerm: string) => {
   });
 };
 
-export const useGetUsers = (limit: number) => {
+export const useGetUsers = (limit?: number) => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_USERS],
     queryFn: () => getUsers(limit),
