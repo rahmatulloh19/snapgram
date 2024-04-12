@@ -16,6 +16,7 @@ import { useUserContext } from "@/context/AuthContext";
 import { useGetUserById, useUpdateUser } from "@/lib/react-queries/queriesAndMutations";
 import { ProfileValidation } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { z } from "zod";
@@ -25,26 +26,28 @@ const UpdateProfile = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { user, setUser } = useUserContext();
+  const memoizedUser = useMemo(() => user, [user.username]);
 
   const { data: currentUser } = useGetUserById(id || "");
   const { mutateAsync: updateMutate, isPending: isLoadingUpdate } = useUpdateUser();
 
-  let defaultValues = {};
-
-  if (user.username) {
-    defaultValues = {
-      file: [],
-      name: user.name,
-      username: user.username,
-      email: user.email,
-      bio: user.bio || "",
-    };
-  }
-
   const form = useForm<z.infer<typeof ProfileValidation>>({
     resolver: zodResolver(ProfileValidation),
-    defaultValues,
+    defaultValues: {
+      username: "",
+      name: "",
+      bio: "",
+      file: [],
+      email: "",
+    },
   });
+
+  useEffect(() => {
+    form.setValue("username", user.username);
+    form.setValue("email", user.email);
+    form.setValue("name", user.name);
+    form.setValue("bio", user.bio || "");
+  }, [memoizedUser]);
 
   if (!currentUser) {
     return (
@@ -53,11 +56,6 @@ const UpdateProfile = () => {
       </div>
     );
   }
-
-  form.setValue("username", user.username);
-  form.setValue("email", user.email);
-  form.setValue("name", user.name);
-  form.setValue("bio", user.bio || "");
 
   const handleUpdate = async (values: z.infer<typeof ProfileValidation>) => {
     const updatedUser = await updateMutate({

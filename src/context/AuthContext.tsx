@@ -57,6 +57,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  const value = {
+    user,
+    setUser,
+    isLoading,
+    setIsLoading,
+    isAuthenticated,
+    setIsAuthenticated,
+    checkAuthUser,
+  };
+
   useEffect(() => {
     if (
       localStorage.getItem("cookieFallback") === "[]" ||
@@ -68,16 +78,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     checkAuthUser();
   }, []);
-
-  const value = {
-    user,
-    setUser,
-    isLoading,
-    setIsLoading,
-    isAuthenticated,
-    setIsAuthenticated,
-    checkAuthUser,
-  };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
