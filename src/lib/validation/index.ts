@@ -32,5 +32,5 @@ export const ProfileValidation = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }).max(25),
   username: z.string().min(2, { message: "Username must be at least 2 characters." }).max(25),
   email: z.string().email(),
-  bio: z.string().min(10).max(1000),
+  bio: z.string().max(1000),
 });
