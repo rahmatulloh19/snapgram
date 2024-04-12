@@ -3,7 +3,7 @@ import { IContextType, IUser } from "../types";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const INITIAL_USER = {
+const INITIAL_USER = {
   id: "",
   name: "",
   username: "",
@@ -23,7 +23,7 @@ const INITIAL_STATE = {
 
 const AuthContext = createContext<IContextType>(INITIAL_STATE);
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+export function AuthProvider({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate();
   const [user, setUser] = useState<IUser>(INITIAL_USER);
   const [isLoading, setIsLoading] = useState(false);
@@ -57,6 +57,18 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  useEffect(() => {
+    if (
+      localStorage.getItem("cookieFallback") === "[]" ||
+      localStorage.getItem("cookieFallback") === null ||
+      localStorage.getItem("cookieFallback") === undefined
+    ) {
+      navigate("/sign-in");
+    }
+
+    checkAuthUser();
+  }, []);
+
   const value = {
     user,
     setUser,
@@ -67,17 +79,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     checkAuthUser,
   };
 
-  useEffect(() => {
-    if (localStorage.getItem("cookieFallback") === "[]" || localStorage.getItem("cookieFallback") === null) {
-      navigate("/sign-in");
-    }
-
-    checkAuthUser();
-  }, []);
-
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-};
+}
 
 export const useUserContext = () => useContext(AuthContext);
-
-export default AuthProvider;

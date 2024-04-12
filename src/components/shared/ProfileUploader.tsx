@@ -28,8 +28,8 @@ const ProfileUploader = ({ fieldChange, mediaUrl }: IUploader) => {
   });
 
   return (
-    <div {...getRootProps}>
-      <input {...getInputProps} className="cursor-pointer" type="text" />
+    <div {...getRootProps()}>
+      <input {...getInputProps()} className="cursor-pointer" type="text" />
 
       <div className="cursor-pointer flex-center gap-4">
         <img className="w-24 h-24 rounded-full object-cover object-top" src={fileUrl || "/assets/icons/profile-placeholder.svg"} alt="Creator image" />

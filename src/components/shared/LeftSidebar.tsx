@@ -33,7 +33,11 @@ const LeftSidebar = () => {
           </div>
         ) : (
           <Link className="flex gap-3 items-center" to={`/profile/${user.id}`}>
-            <img className="h-14 w-14 rounded-full" src={user.imageUrl || "/assets/icons/profile-placeholder.svg"} alt="Profile image" />
+            <img
+              className="h-14 w-14 rounded-full"
+              src={user.imageUrl || "/assets/icons/profile-placeholder.svg"}
+              alt="Profile image"
+            />
             <div className="flex flex-col">
               <p className="body-bold">{user.name}</p>
               <p className="small-regular text-light-3">@{user.username}</p>
@@ -42,9 +46,20 @@ const LeftSidebar = () => {
         )}
         <ul className="flex flex-col gap-6">
           {sideBarLinks.map((link: INavLink) => (
-            <li className={`leftsidebar-link group ${pathname === link.route ? "bg-primary-500" : ""}`} key={link.label}>
+            <li
+              className={`leftsidebar-link group ${
+                pathname === link.route ? "bg-primary-500" : ""
+              }`}
+              key={link.label}
+            >
               <NavLink className="flex gap-4 items-center p-4" to={link.route}>
-                <img className={`group-hover:invert-white ${pathname === link.route ? "invert-white" : ""}`} src={link.imgURL} alt={link.label} />
+                <img
+                  className={`group-hover:invert-white ${
+                    pathname === link.route ? "invert-white" : ""
+                  }`}
+                  src={link.imgURL}
+                  alt={link.label}
+                />
                 {link.label}
               </NavLink>
             </li>
