@@ -33,7 +33,8 @@ const Explore = () => {
   }
 
   const shouldShowSearchResult = searchValue !== "";
-  const shouldShowPosts = !shouldShowSearchResult && posts?.pages.every((item) => item?.documents.length === 0);
+  const shouldShowPosts =
+    !shouldShowSearchResult && posts?.pages.every((item) => item?.documents.length === 0);
 
   return (
     <div className="explore-container">
@@ -41,7 +42,13 @@ const Explore = () => {
         <h2 className="h3-bold md:h2-bold">Search Posts</h2>
         <div className="flex gap-1 px-4 w-full rounded-lg bg-dark-4">
           <img src="/assets/icons/search.svg" width={24} height={24} alt="Search icon" />
-          <Input className="explore-search" type="text" placeholder="Search ..." value={searchValue} onChange={(evt) => setSearchValue(evt.target.value)} />
+          <Input
+            className="explore-search"
+            type="text"
+            placeholder="Search ..."
+            value={searchValue}
+            onChange={(evt) => setSearchValue(evt.target.value)}
+          />
         </div>
       </div>
       <div className="flex-between w-full max-w-5xl mt-16 mb-7">
@@ -59,7 +66,9 @@ const Explore = () => {
         ) : shouldShowPosts ? (
           <p className="text-light-4 mt-10 text-center w-full">End of posts</p>
         ) : (
-          posts.pages.map((item, index) => <GridPostList key={`page-${index}`} posts={item.documents} />)
+          posts.pages.map((item, index) => (
+            <GridPostList key={`page-${index}`} posts={item.documents} />
+          ))
         )}
       </div>
 

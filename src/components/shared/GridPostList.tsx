@@ -22,7 +22,11 @@ const GridPostList = ({ posts, showUser = true, showStats = true }: GridPostList
           <div className="grid-post_user">
             {showUser ? (
               <div className="flex items-center justify-start gap-2 flex-1">
-                <img className="w-8 h-8 rounded-full" src={post.creator.imageUrl} alt="Creator image" />
+                <img
+                  className="w-8 h-8 rounded-full"
+                  src={post.creator.imageUrl}
+                  alt="Creator image"
+                />
                 <p className="line-clamp-1">{post.creator.name}</p>
               </div>
             ) : (
