@@ -225,6 +225,21 @@ export async function delateSavedPost(savedRecordId: string) {
 
     if (!statusCode) throw Error;
 
+    const some = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.savesCollectionId
+    );
+
+    some.documents.forEach(async (doc) => {
+      if (doc.user === null || doc.post === null) {
+        await databases.deleteDocument(
+          appwriteConfig.databaseId,
+          appwriteConfig.savesCollectionId,
+          doc.$id
+        );
+      }
+    });
+
     return { status: "ok" };
   } catch (error) {
     console.log(error);

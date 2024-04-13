@@ -3,7 +3,6 @@ import Loader from "@/components/shared/Loader";
 import PostStats from "@/components/shared/PostStats";
 import { Button } from "@/components/ui/button";
 import { useUserContext } from "@/context/AuthContext";
-import { appwriteConfig, databases } from "@/lib/appwrite/config";
 import {
   useDeletePost,
   useGetPostById,
