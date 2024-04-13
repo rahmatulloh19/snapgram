@@ -1,6 +1,13 @@
 import Loader from "@/components/shared/Loader";
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { SignInValidation } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -64,7 +71,9 @@ const SignInForm = () => {
         <div className="sm:w-420 flex-center flex-col">
           <img src="/assets/images/logo.svg" width={171} height={36} alt="Snapgram's logo" />
           <h2 className="h3-bold md:h2-bold mt-5 md:mt-12">Log in to your account</h2>
-          <p className="text-light-3 small-medium md:base-regular mt-2">Welcome back !, Please enter your details</p>
+          <p className="text-light-3 small-medium md:base-regular mt-2">
+            Welcome back ! Please enter your details
+          </p>
 
           <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5 w-full mt-4">
             <FormField
@@ -74,7 +83,12 @@ const SignInForm = () => {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input className="shad-input" type="email" placeholder="Enter your email ..." {...field} />
+                    <Input
+                      className="shad-input"
+                      type="email"
+                      placeholder="Enter your email ..."
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -87,13 +101,22 @@ const SignInForm = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input className="shad-input" type="password" placeholder="Enter your password ..." {...field} />
+                    <Input
+                      className="shad-input"
+                      type="password"
+                      placeholder="Enter your password ..."
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button className="shad-button_primary mb-2" type="submit" disabled={isUserLoading || isSuccess}>
+            <Button
+              className="shad-button_primary mb-2"
+              type="submit"
+              disabled={isUserLoading || isSuccess}
+            >
               {isUserLoading || isSuccess ? (
                 <div className="flex-center gap-2">
                   <Loader /> Loading ...

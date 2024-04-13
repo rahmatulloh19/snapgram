@@ -39,7 +39,7 @@ const Profile = () => {
       <div className="profile-inner_container">
         <div className="flex xl:flex flex-col max-xl:items-center flex-1 gap-7">
           <img
-            src={"/assets/icons/profile-placeholder.svg"}
+            src={user.imageUrl || "/assets/icons/profile-placeholder.svg"}
             alt="Profile image"
             className="w-28 h-28 lg:w-36 lg:h-36 rounded-full"
           />

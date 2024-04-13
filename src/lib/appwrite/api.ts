@@ -331,7 +331,7 @@ export async function deletePost(postId: string, imageId: string) {
 }
 
 export async function getInfinitePosts({ pageParam }: any) {
-  const queries: string[] = [Query.orderDesc("$updatedAt"), Query.limit(10)];
+  const queries: string[] = [Query.orderDesc("$updatedAt"), Query.limit(3)];
 
   if (pageParam) {
     queries.push(Query.cursorAfter(pageParam.toString()));
