@@ -18,7 +18,7 @@ import { ProfileValidation } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { z } from "zod";
 
 const UpdateProfile = () => {
@@ -167,9 +167,12 @@ const UpdateProfile = () => {
               )}
             />
             <div className="flex gap-4 justify-end">
-              <Button type="button" className="shad-button_dark_4 !h-auto">
+              <Link
+                to={`/profile/${user.id}`}
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 shad-button_dark_4 !h-auto"
+              >
                 Cancel
-              </Button>
+              </Link>
               <Button
                 className="shad-button_primary whitespace-nowrap"
                 type="submit"
