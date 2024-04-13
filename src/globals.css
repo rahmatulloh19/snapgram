@@ -110,11 +110,13 @@
 
   .common-container {
     @apply flex flex-col flex-1 items-center gap-10 overflow-scroll py-10 px-5 md:px-8 lg:p-14 custom-scrollbar;
+    height: calc(100% - 135px);
   }
 
   /* All Users */
   .user-container {
     @apply max-w-5xl flex flex-col items-start w-full gap-6 md:gap-9;
+    height: calc(100% - 135px);
   }
 
   .user-grid {
@@ -124,6 +126,7 @@
   /* Explore */
   .explore-container {
     @apply flex flex-col flex-1 items-center overflow-scroll py-10 px-5 md:p-14 custom-scrollbar;
+    height: calc(100% - 135px);
   }
 
   .explore-inner_container {
@@ -137,6 +140,7 @@
   /* Home */
   .home-container {
     @apply flex flex-col flex-1 items-center gap-10 overflow-scroll py-10 px-5 md:px-8 lg:p-14 custom-scrollbar;
+    height: calc(100% - 135px);
   }
 
   .home-posts {
@@ -150,6 +154,7 @@
   /* Post Details */
   .post_details-container {
     @apply flex flex-col flex-1 gap-10 overflow-scroll py-10 px-5 md:p-14 custom-scrollbar items-center;
+    height: calc(100% - 135px);
   }
 
   .post_details-card {
@@ -171,6 +176,7 @@
   /* Profile */
   .profile-container {
     @apply flex flex-col items-center flex-1 gap-10 overflow-scroll py-10 px-5 md:p-14 custom-scrollbar;
+    height: calc(100% - 135px);
   }
 
   .profile-inner_container {
@@ -184,6 +190,7 @@
   /* Saved */
   .saved-container {
     @apply flex flex-col flex-1 items-center gap-10 overflow-scroll py-10 px-5 md:p-14 custom-scrollbar;
+    height: calc(100% - 135px);
   }
 
   /* Bottom bar */
@@ -277,4 +284,8 @@
   .shad-button_ghost {
     @apply flex gap-4 items-center justify-start hover:bg-transparent hover:text-white !important;
   }
+}
+
+body {
+  overflow-y: hidden;
 }
