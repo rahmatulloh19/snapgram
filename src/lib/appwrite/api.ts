@@ -225,12 +225,12 @@ export async function delateSavedPost(savedRecordId: string) {
 
     if (!statusCode) throw Error;
 
-    const some = await databases.listDocuments(
+    const { documents: savedCollection } = await databases.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.savesCollectionId
     );
 
-    some.documents.forEach(async (doc) => {
+    savedCollection.forEach(async (doc) => {
       if (doc.user === null || doc.post === null) {
         await databases.deleteDocument(
           appwriteConfig.databaseId,
